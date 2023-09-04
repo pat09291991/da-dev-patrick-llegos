@@ -16,4 +16,41 @@ class TasksTest extends TestCase
         $response->dump();
         $response->assertStatus(200);
     }
+
+    public function testStore()
+    {
+        $reqBody = [
+            'name' => 'Make Breakfast'
+        ];
+
+        $response = $this->post('api/tasks', $reqBody);
+        $response->dump();
+        $response->assertStatus(200);
+    }
+
+    public function testShow()
+    {
+        $response = $this->get('api/tasks/1');
+        $response->dump();
+        $response->assertStatus(200);
+    }
+
+    public function testUpdate()
+    {
+        $reqBody = [
+            'name' => 'Make Breakfast',
+            'status' => 1
+        ];
+
+        $response = $this->put('api/tasks/1', $reqBody);
+        $response->dump();
+        $response->assertStatus(200);
+    }
+
+    public function testDelete()
+    {
+        $response = $this->delete('api/tasks/1');
+        $response->dump();
+        $response->assertStatus(200);
+    }
 }
