@@ -25,7 +25,7 @@ class TaskController extends Controller
                 $q->where('name', 'LIKE', '%' . $search . '%');
             }
 
-            if (!empty($statusFilter)) {
+            if ($statusFilter != "") {
                 $q->where('status', $statusFilter);
             }
         })->orderBy($sortField, $sortOrder);
