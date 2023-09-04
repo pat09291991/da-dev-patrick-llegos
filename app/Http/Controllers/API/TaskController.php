@@ -46,6 +46,9 @@ class TaskController extends Controller
         try {
             $params = $request->validate([
                 'name' => 'required|max:255|unique:tasks,name'
+            ],[
+                "name.unique" => "The task has already been added",
+                "name.required" => "The task name is required",
             ]);
 
             Task::create($params);
@@ -72,6 +75,9 @@ class TaskController extends Controller
             $params = $request->validate([
                 'name' => 'required|max:255|unique:tasks,name,' . $task->id,
                 'status' => 'required'
+            ],[
+                "name.unique" => "The task has already been added",
+                "name.required" => "The task name is required",
             ]);
 
             $task->update($params);

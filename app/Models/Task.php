@@ -12,10 +12,15 @@ class Task extends Model
     protected $guarded = [];
 
     const STATUS_PENDING = 0;
-    const STATUS_DONE = 1;
+    const STATUS_COMPLETED = 1;
     
     const STATUSES = [
         0 => "PENDING",
-        1 => "DONE"
+        1 => "COMPLETED"
     ];
+
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }
